@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New World | O Portal Geek & Anime</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            purple: '#8B5CF6',
+                            dark: '#0F172A',
+                            card: '#1E293B',
+                            accent: '#EC4899'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 dark:bg-brand-dark text-gray-800 dark:text-gray-100 min-h-screen transition-colors duration-300 font-sans">
+
+    <!-- Navegação -->
+    <nav class="sticky top-0 z-50 bg-white/80 dark:bg-brand-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-6">
+                <a href="#" class="text-2xl font-black tracking-wider text-brand-purple flex items-center gap-2">
+                    <i class="fa-solid font-bold fa-globe text-brand-accent"></i> NEW WORLD
+                </a>
+                <div class="hidden md:flex gap-4 font-semibold text-sm">
+                    <button onclick="filtrarCategoria('todas')" class="hover:text-brand-purple">Todas</button>
+                    <button onclick="filtrarCategoria('Animes')" class="hover:text-brand-purple">Animes</button>
+                    <button onclick="filtrarCategoria('Mangás')" class="hover:text-brand-purple">Mangás</button>
+                    <button onclick="filtrarCategoria('Games')" class="hover:text-brand-purple">Games</button>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="relative hidden sm:block">
+                    <input type="text" id="searchInput" onkeyup="buscarNoticia()" placeholder="Buscar notícias..." class="bg-gray-200 dark:bg-gray-800 text-xs rounded-full py-2 px-4 pl-9 focus:outline-none focus:ring-2 focus:ring-brand-purple w-48 transition-all">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+                </div>
+                <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-yellow-500 dark:text-brand-purple hover:opacity-80">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner Principal (Destaque) -->
+    <header class="max-w-7xl mx-auto px-4 my-6">
+        <div class="relative rounded-2xl overflow-hidden bg-gradient-to-r from-purple-900 to-indigo-900 h-80 flex items-end p-6 border border-gray-800 shadow-2xl">
+            <div class="z-10 max-w-2xl">
+                <span class="bg-brand-accent text-white text-xs font-bold px-3 py-1 rounded-full uppercase">Destaque da Temporada</span>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-white mt-2 leading-tight">Guia Completo: Os Animes Mais Esperados do Ano</h1>
+                <p class="text-gray-300 text-sm mt-2 hidden sm:block">Confira datas de estreia, trailers e onde assistir aos lançamentos mais quentes do universo otaku.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        
+        <!-- Feed de Notícias (2 Colunas) -->
+        <section class="lg:col-span-2">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 border-b-2 border-brand-purple pb-2">
+                <i class="fa-solid fa-newspaper text-brand-purple"></i> Últimas Notícias
+            </h2>
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Inserido dinamicamente via JS -->
+            </div>
+        </section>
+
+        <!-- Sidebar / Guia de Temporada & Comunidade -->
+        <aside class="space-y-6">
+            <!-- Guia de Temporada -->
+            <div class="bg-white dark:bg-brand-card p-5 rounded-xl border border-gray-200 dark:border-gray-800 shadow-md">
+                <h3 class="font-bold text-lg mb-3 text-brand-purple flex items-center gap-2">
+                    <i class="fa-solid fa-tv"></i> Exibições Semanal
+                </h3>
+                <ul class="space-y-3 text-sm">
+                    <li class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-gray-700">
+                        <span><strong>Segunda:</strong> Tower of God S2</span>
+                        <span class="text-xs text-green-400 font-semibold">Crunchyroll</span>
+                    </li>
+                    <li class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-gray-700">
+                        <span><strong>Quarta:</strong> Re:Zero S3</span>
+                        <span class="text-xs text-green-400 font-semibold">Crunchyroll</span>
+                    </li>
+                    <li class="flex justify-between items-center pb-2 border-b border-gray-100 dark:border-gray-700">
+                        <span><strong>Sábado:</strong> Bleach: TYBW</span>
+                        <span class="text-xs text-blue-400 font-semibold">Disney+</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Formulário de Comentários / Interatividade -->
+            <div class="bg-white dark:bg-brand-card p-5 rounded-xl border border-gray-200 dark:border-gray-800 shadow-md">
+                <h3 class="font-bold text-lg mb-3 text-brand-accent flex items-center gap-2">
+                    <i class="fa-solid fa-comments"></i> Comunidade Geek
+                </h3>
+                <form id="commentForm" onsubmit="adicionarComentario(event)" class="space-y-3">
+                    <input type="text" id="authorInput" placeholder="Seu Nick" required class="w-full bg-gray-100 dark:bg-gray-800 text-sm p-2 rounded focus:outline-none focus:ring-1 focus:ring-brand-purple">
+                    <textarea id="commentInput" placeholder="Deixe sua opinião..." required class="w-full bg-gray-100 dark:bg-gray-800 text-sm p-2 rounded focus:outline-none focus:ring-1 focus:ring-brand-purple h-20"></textarea>
+                    <button type="submit" class="w-full bg-brand-purple text-white font-bold py-2 rounded hover:opacity-90 text-sm transition">Comentar</button>
+                </form>
+                <div id="commentsList" class="mt-4 space-y-2 max-h-48 overflow-y-auto">
+                    <!-- Comentários aparecem aqui -->
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-white dark:bg-brand-card border-t border-gray-200 dark:border-gray-800 py-6 text-center text-xs text-gray-500">
+        <p>© 2026 New World - O seu portal de cultura Geek e Animes. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
